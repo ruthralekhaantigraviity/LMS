@@ -1,0 +1,442 @@
+.logo-carousel-container {
+    padding: 1rem 0;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+/* Heading Styling from screenshot */
+.alumni-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem !important;
+    text-align: center;
+}
+
+.alumni-title {
+    font-size: 32px;
+    font-weight: 500;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.marquees-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important;
+}
+
+/* Marquee Container */
+.marquee-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.bottom-marquee {
+    margin-top: -1.5rem !important;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 6rem;
+    animation: scroll 60s linear infinite;
+    width: max-content;
+    align-items: center;
+}
+
+.marquee-content.reverse {
+    animation: scroll-reverse 60s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scroll-reverse {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Logo Item Styling */
+.logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    cursor: default;
+}
+
+.logo-item:hover {
+    transform: scale(1.05);
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Specific Logo Styles for Top Row */
+.paypal-logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.paypal-logo .pp {
+    color: #003087;
+    font-size: 2rem;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.paypal-text {
+    color: #0070ba;
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+.xb-logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.xb-slash {
+    color: #888;
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.xb-text {
+    color: #ffcc00;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.nykaa {
+    color: #fc2779;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.vimeo {
+    color: #1ab7ea;
+    font-weight: bold;
+}
+
+.ajio {
+    color: #888;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.mystifly-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ff0000;
+    font-weight: 900;
+    font-size: 1.6rem;
+}
+
+.mystifly-icon {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #ff0000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-dot {
+    width: 8px;
+    height: 8px;
+    background: #ff0000;
+    border-radius: 50%;
+}
+
+.carousel-mask.left {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-primary) 0%, transparent 100%);
+}
+
+.carousel-mask.right {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-primary) 0%, transparent 100%);
+}
+
+.workspan-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.6rem;
+}
+
+.w-logo {
+    background: #00a1e0;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+}
+
+.wisetech-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #3b82f6;
+}
+
+.grid-icon {
+    display: flex;
+    gap: 4px;
+}
+
+.grid-icon span {
+    width: 4px;
+    height: 16px;
+    background: #3b82f6;
+}
+
+.wt-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.paymatrix-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #00ecff;
+    font-weight: 800;
+    font-size: 1.6rem;
+}
+
+.matrix-icon {
+    border: 2px solid #00ecff;
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+.zee-logo .zee-circle {
+    width: 40px;
+    height: 40px;
+    background: #5b21b6;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+/* Specific Logo Styles for Bottom Row */
+.firsthive-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+}
+
+.hive-icon {
+    width: 20px;
+    height: 20px;
+    background: #f97316;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.fh-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.rebel {
+    color: #6d28d9;
+    font-size: 1.2rem;
+    line-height: 1;
+    text-align: left;
+}
+
+.rebel span {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.yubi-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+.yubi-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.yubi-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.yubi-dots span:nth-child(1) {
+    background: #f97316;
+}
+
+.yubi-dots span:nth-child(2) {
+    background: #3b82f6;
+}
+
+.yubi-dots span:nth-child(3) {
+    background: #fff;
+}
+
+.credera-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-weight: 400;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+}
+
+.c-box {
+    width: 16px;
+    height: 16px;
+    border: 4px solid #f87171;
+    border-right: 0;
+}
+
+.love-bonito {
+    font-family: 'Georgia', serif;
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+
+.siply-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #22d3ee;
+    font-weight: 900;
+    font-size: 2rem;
+    font-style: italic;
+}
+
+.siply-swoosh {
+    width: 30px;
+    height: 15px;
+    background: #22d3ee;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+.fyers-logo,
+.porter-logo,
+.turvo-logo,
+.apna-box,
+.sigmoid-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: white;
+}
+
+.fyers-shield {
+    background: #3b82f6;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+.porter-pin {
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+}
+
+.turvo-circle {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #888;
+    border-radius: 50%;
+    color: #888;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.apna-box {
+    background: white;
+    color: black;
+    padding: 2px 10px;
+    border-radius: 2px;
+}
+
+.sigmoid-logo span {
+    color: #ff0000;
+    font-weight: 900;
+}
+
+.sigmoid-lines span {
+    display: block;
+    width: 4px;
+    height: 12px;
+    background: #ff0000;
+    margin-bottom: 2px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .alumni-title {
+        font-size: 1.2rem;
+    }
+
+    .marquee-content {
+        gap: 3rem;
+    }
+
+    .logo-text,
+    .paypal-text,
+    .xb-text,
+    .ajio {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,41 @@
+.floating-phone-btn {
+    position: fixed;
+    bottom: 80px;
+    /* Sits above the 50px-ish sticky footer */
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #2563eb;
+    /* Vibrant blue color */
+    border-radius: 25px 25px 8px 25px;
+    /* Creates the chat/call bubble look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 9998;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.floating-phone-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background-color: #1d4ed8;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.floating-phone-icon {
+    margin-right: -2px;
+    /* Visual center adjustment */
+}
+
+@media (max-width: 768px) {
+    .floating-phone-btn {
+        bottom: 70px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        border-radius: 22px 22px 6px 22px;
+    }
+}

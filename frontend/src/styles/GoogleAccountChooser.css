@@ -1,0 +1,138 @@
+.google-chooser-container {
+    min-height: 100vh;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    padding: 20px;
+}
+
+.google-chooser-card {
+    background: #fff;
+    width: 100%;
+    max-width: 450px;
+    padding: 48px 40px 36px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.google-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #5f6368;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.google-close-btn:hover {
+    background-color: #f1f3f4;
+}
+
+.google-logo {
+    width: 75px;
+    margin-bottom: 12px;
+}
+
+.google-chooser-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #202124;
+    margin-bottom: 8px;
+}
+
+.google-chooser-subtitle {
+    font-size: 16px;
+    color: #202124;
+    margin-bottom: 24px;
+}
+
+.account-list {
+    text-align: left;
+    margin-bottom: 24px;
+    border-top: 1px solid #dadce0;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #dadce0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.account-item:hover {
+    background-color: #f7f8f8;
+}
+
+.account-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 12px;
+}
+
+.account-info {
+    flex: 1;
+}
+
+.account-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #3c4043;
+    display: block;
+}
+
+.account-email {
+    font-size: 12px;
+    color: #70757a;
+}
+
+.use-another-account {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #1a73e8;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.use-another-account svg {
+    margin-right: 12px;
+    color: #5f6368;
+}
+
+.google-chooser-footer {
+    border-top: 1px solid #dadce0;
+    padding-top: 24px;
+    text-align: left;
+    font-size: 12px;
+    color: #70757a;
+    line-height: 1.5;
+}
+
+.google-chooser-footer a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.google-chooser-footer a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,69 @@
+/* ─── Trending / Tutorial / Career Section ─── */
+.trending-section {
+    background: var(--bg-secondary);
+    padding: 1.75rem 1.25rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    transition: background-color var(--transition-speed);
+}
+
+.trending-wrapper {
+    max-width: 100%;
+    margin: 0;
+}
+
+/* Each block (Trending / Tutorial / Career) */
+.trending-block {
+    margin-bottom: 1rem;
+}
+
+.trending-heading {
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin: 0 0 0.35rem 0;
+    letter-spacing: 0.01em;
+}
+
+/* Links row */
+.trending-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1.75rem;
+    align-items: center;
+}
+
+.trending-link {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    font-weight: 400;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+    line-height: 1.75;
+}
+
+.trending-link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .trending-section {
+        padding: 1.25rem 1rem;
+    }
+
+    .trending-links {
+        gap: 0.2rem 1rem;
+    }
+
+    .trending-link {
+        font-size: 0.72rem;
+    }
+
+    .trending-heading {
+        font-size: 0.78rem;
+    }
+}

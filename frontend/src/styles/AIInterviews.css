@@ -1,0 +1,192 @@
+.ai-section {
+    background-color: var(--bg-primary);
+    padding: 6rem 1rem;
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transition: background-color var(--transition-speed);
+}
+
+.ai-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+.ai-header {
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centered */
+    width: 100%;
+}
+
+.ai-label {
+    display: block;
+    font-size: 22px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.ai-heading {
+    font-size: calc(2.5rem + 4px);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    /* Centered */
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    white-space: normal;
+}
+
+.heading-br {
+    display: block;
+    content: "";
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+    .ai-heading {
+        white-space: normal;
+        /* Allow wrap on smaller screens */
+        font-size: 2rem;
+    }
+}
+
+/* Features */
+.ai-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 18px;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.sparkle-icon {
+    color: #94a3b8;
+    opacity: 0.9;
+}
+
+/* Laptop Mockup Reimagined - More focus on Grid */
+.laptop-container {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 950px;
+    /* Reduced to align with specific navbar points */
+    position: relative;
+    overflow: visible;
+    /* Important: allow glow to spill out */
+}
+
+.laptop-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%; 
+    height: 90%;
+    background: transparent;
+    box-shadow: 0 0 45px 10px rgba(0, 82, 255, 0.45);
+    /* Subtler spread and lower opacity */
+    filter: blur(20px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.laptop-frame {
+    position: relative;
+    z-index: 10;
+    background: transparent;
+    border-radius: 1rem;
+    border: none;
+    padding: 1rem 1rem 0 1rem;
+    box-shadow: none;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.laptop-screen {
+    background: transparent;
+    /* Removed black background (var--bg-primary) */
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    overflow: hidden;
+    height: 500px;
+    /* Reduced from 600px */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Section Footer Text - Outside the laptop */
+.ai-section-footer {
+    width: 100%;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.btn-explore-pink {
+    background: #ff0080;
+    /* Plain vibrant pink */
+    color: white;
+    border: none;
+    padding: 1.1rem 2.8rem;
+    border-radius: 0;
+    /* Truly sharp edges as requested */
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.2);
+    transition: transform 0.2s;
+}
+
+.btn-explore-pink:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 0, 128, 0.3);
+}
+
+.footer-label {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #4a5c7a;
+    /* Muted steel blue */
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-family: 'Inter', sans-serif;
+}

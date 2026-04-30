@@ -1,0 +1,23 @@
+.program-details-page {
+    background-color: #0b0b0d;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.program-content-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Ensure sections match the reference image spacing */
+.program-details-page section {
+    margin-bottom: 6rem;
+}
+
+@media (max-width: 1440px) {
+    .program-content-wrapper {
+        padding: 2rem 1rem;
+    }
+}

@@ -1,0 +1,400 @@
+/* =================================================
+   FEATURED IN THE NEWS — Reference-exact rebuild
+   ================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.fn-section {
+    background-color: var(--bg-primary);
+    padding: 3rem 1rem;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* ===========================
+   MARQUEE — 2 rows
+   =========================== */
+.fn-marquee-wrap {
+    background: var(--bg-primary);
+    padding: 0.9rem 0 0.7rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    overflow: hidden;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.fn-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.fn-m-track {
+    display: inline-flex;
+    align-items: center;
+    animation: scrollLeft 24s linear infinite;
+}
+
+.fn-m-track--rev {
+    animation: scrollRight 30s linear infinite;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.fn-m-dim {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.fn-m-dot {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    font-weight: 700;
+    margin: 0 0.1em;
+}
+
+.fn-m-bright {
+    font-size: 0.82rem;
+    font-weight: 900;
+    color: var(--featured-color);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* ===========================
+   CARDS SCROLL CONTAINER
+   =========================== */
+.fn-cards-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    /* Hide scrollbar for firefox */
+    scroll-behavior: smooth;
+}
+
+.fn-cards-scroll::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar for Chrome/Safari */
+}
+
+/* ===========================
+   SLIDER VIEWPORT (Invisible Arrows)
+   =========================== */
+.fn-slider-viewport {
+    position: relative;
+    width: 100%;
+}
+
+.fn-slider-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.fn-slider-overlay.left {
+    left: 0;
+    justify-content: flex-start;
+    padding-left: 1rem;
+}
+
+.fn-slider-overlay.right {
+    right: 0;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+.fn-slider-viewport:hover .fn-slider-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fn-arrow-btn-hover {
+    width: 70px;
+    height: 70px;
+    background: #2a2a2a;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.fn-arrow-btn-hover:hover {
+    background: #3a3a3a;
+    transform: scale(1.05);
+}
+
+.fn-arrow-btn-hover.left {
+    margin-left: -1rem;
+}
+
+.fn-arrow-btn-hover.right {
+    margin-right: -1rem;
+}
+
+.fn-arrow-btn-hover:active {
+    transform: scale(0.95);
+}
+
+.fn-cards-row {
+    display: flex;
+    align-items: stretch;
+    min-width: max-content;
+    gap: 20px;
+    padding: 0 1rem;
+}
+
+/* ===========================
+   SINGLE CARD
+   =========================== */
+.fn-card {
+    width: 380px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: filter 0.2s ease, border-color var(--transition-speed);
+    cursor: pointer;
+}
+
+.fn-card:hover {
+    filter: brightness(1.08);
+}
+
+/* ---- Card top (gradient bg + logo) ---- */
+.fn-card-top {
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient backgrounds per outlet */
+.fn-card--toi .fn-card-top {
+    background: linear-gradient(145deg, #e91e8c 0%, #c0176e 40%, #a01258 100%);
+}
+
+.fn-card--it .fn-card-top {
+    background: linear-gradient(145deg, #d946a8 0%, #b8258a 40%, #922070 100%);
+}
+
+.fn-card--et .fn-card-top {
+    background: linear-gradient(145deg, #e02020 0%, #b91c1c 40%, #991b1b 100%);
+}
+
+.fn-card--tn .fn-card-top {
+    background: linear-gradient(145deg, #7c3aed 0%, #4f46e5 50%, #3730a3 100%);
+}
+
+.fn-card--et2 .fn-card-top {
+    background: linear-gradient(145deg, #e02020 0%, #b91c1c 40%, #991b1b 100%);
+}
+
+/* Subtle diagonal shine inside card top */
+.fn-card-top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, transparent 55%, rgba(0, 0, 0, 0.15) 100%);
+    pointer-events: none;
+}
+
+/* ---- Card bottom ---- */
+.fn-card-bottom {
+    background: var(--bg-card);
+    padding: 0.85rem 0.9rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    min-height: 130px;
+    transition: background-color var(--transition-speed);
+}
+
+.fn-card-headline {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin: 0 0 auto;
+}
+
+.fn-news-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 1rem 0;
+    line-height: 1.4;
+}
+
+.fn-card-date {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    margin: 0.85rem 0 0;
+    line-height: 1.4;
+}
+
+/* ===========================
+   LOGOS
+   =========================== */
+.fn-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* TOI */
+.fn-toi-box {
+    background: #c8102e;
+    border: 3px solid #fff;
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.fn-toi-text {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.06em;
+    font-family: 'Georgia', serif;
+}
+
+/* India Today */
+.fn-it-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+}
+
+.fn-it-india {
+    font-size: 2.0rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.18em;
+    line-height: 1.1;
+}
+
+.fn-it-today {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.12em;
+    line-height: 1.1;
+}
+
+/* ET */
+.fn-et-box {
+    background: #c8102e;
+    border: 3px solid #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.fn-et-text {
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #fff;
+    font-style: italic;
+    letter-spacing: -0.02em;
+}
+
+/* Times Now */
+.fn-tn-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+}
+
+.fn-tn-times {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.18em;
+    line-height: 1;
+}
+
+.fn-tn-now-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.fn-tn-n {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #fff;
+    background: #e53e3e;
+    padding: 0 0.3rem;
+    line-height: 1.1;
+}
+
+.fn-tn-o {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #fff;
+    background: #22c55e;
+    padding: 0 0.3rem;
+    line-height: 1.1;
+}
+
+.fn-tn-w {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #fff;
+    background: #3b82f6;
+    padding: 0 0.3rem;
+    line-height: 1.1;
+}
+
+/* ET2 (same as ET) */
+.fn-logo--et2 .fn-et-box {
+    background: #b91c1c;
+}

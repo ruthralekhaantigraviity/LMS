@@ -1,0 +1,254 @@
+.success-page-container {
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: white;
+    padding-bottom: 5rem;
+}
+
+.success-page-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 8rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.congrats-card {
+    background: #0d0d0d;
+    border: 1px solid #222;
+    padding: 4rem 3rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.congrats-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 0, 128, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+
+.congrats-card h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(90deg, #fff, #ff0080);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.congrats-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 0, 128, 0.1);
+    color: #ff0080;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    width: fit-content;
+    margin: 0 auto 2rem;
+    border: 1px solid rgba(255, 0, 128, 0.2);
+}
+
+.success-description {
+    font-size: 1.25rem;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+.success-description strong {
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary-success {
+    background: #ff0080;
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 10px 25px rgba(255, 0, 128, 0.3);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-primary-success:hover {
+    transform: translateY(-3px);
+    background: #e60073;
+}
+
+.btn-secondary-success {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    padding: 1.2rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.2s;
+}
+
+.btn-secondary-success:hover {
+    border-color: #666;
+    color: white;
+}
+
+/* Next Steps */
+.next-steps-section {
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.next-steps-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.next-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.step-card {
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    padding: 2rem;
+    border-radius: 12px;
+    transition: border-color 0.3s;
+}
+
+.step-card:hover {
+    border-color: #333;
+}
+
+.step-num {
+    font-size: 0.8rem;
+    color: #ff0080;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.step-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.step-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+@media (max-width: 768px) {
+    .congrats-card h1 {
+        font-size: 2.5rem;
+    }
+
+    .success-page-content {
+        padding-top: 6rem;
+    }
+}
+
+.certificate-preview-container {
+    width: 100%;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.cert-static {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 800px !important;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-download-pdf-fixed {
+    position: absolute;
+    bottom: 2rem;
+    background: #ff0080;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+}
+
+@media print {
+
+    .navbar,
+    .action-buttons,
+    .next-steps-section {
+        display: none !important;
+    }
+
+    .success-page-container {
+        padding: 0;
+        background: white;
+    }
+
+    .congrats-card {
+        border: none;
+        box-shadow: none;
+        background: white;
+        padding: 0;
+    }
+
+    .congrats-icon-wrap,
+    h1,
+    .congrats-badge,
+    .success-description {
+        display: none;
+    }
+
+    .certificate-preview-container {
+        margin: 0;
+    }
+
+    .cert-static {
+        transform: none !important;
+        box-shadow: none !important;
+        border: 12px solid #1a1a1a !important;
+    }
+}

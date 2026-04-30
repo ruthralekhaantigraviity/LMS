@@ -1,0 +1,168 @@
+.formula-section {
+    background-color: #0b0e14;
+    padding: 96px 2rem;
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.formula-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 192px;
+    background-image:
+        linear-gradient(to bottom, transparent 96px, #0b0e14 192px),
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 96px 96px, 96px 96px;
+    background-position: center top, center -1px, center -1px;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 36%, black 36%);
+    mask-image: linear-gradient(to right, transparent 0%, transparent 36%, black 36%);
+}
+
+.formula-wrapper {
+    max-width: 1440px;
+    padding: 0 1rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+@media (min-width: 900px) {
+    .formula-wrapper {
+        grid-template-columns: 1.15fr 1.25fr;
+        /* Tuned proportion to start left edge of video at RESOURCES */
+    }
+}
+
+/* Left Content */
+.formula-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 10;
+    transform: translate(2rem, -2rem);
+}
+
+.formula-label {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.leaders-banner-title {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+}
+
+.formula-heading {
+    font-size: 2.375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0;
+    margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .formula-heading {
+        font-size: 3.375rem;
+        line-height: 1.1;
+    }
+}
+
+.btn-book-class {
+    background-color: #ec0055;
+    /* Scaler Pink */
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    font-weight: 300;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.btn-book-class:hover {
+    background-color: #be0044;
+}
+
+/* Right Video */
+.formula-video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-primary);
+    border-top-left-radius: 8px;
+    /* Slight radius maybe? */
+    border-bottom-left-radius: 8px;
+    /* Visual shows full flush right potentially, but rounded looks good */
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+}
+
+.formula-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.leaders-photos-row::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+.leaders-photos-row::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+.leader-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.leader-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.leader-card-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.leader-card-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}

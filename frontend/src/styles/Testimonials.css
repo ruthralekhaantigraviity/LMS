@@ -1,0 +1,289 @@
+.testimonials-section {
+    background: var(--testimonial-bg);
+    padding: 0.5rem 1rem 6rem;
+    /* Minimum top padding to move text to the very top */
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--transition-speed);
+}
+
+.testimonials-wrapper {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    /* Reduced from 4rem */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    /* Reduced from 0.8rem */
+}
+
+.btn-explore {
+    background: linear-gradient(90deg, #ec4899, #d946ef);
+    /* Pink/Magenta Gradient */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+}
+
+.btn-explore:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+}
+
+.testimonial-subtitle {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888;
+}
+
+.testimonial-heading {
+    font-size: calc(2.5rem + 6px);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    /* Added positive letter spacing */
+}
+
+@media (max-width: 1200px) {
+    .testimonial-heading {
+        font-size: 2rem;
+    }
+}
+
+/* Slider Viewport */
+.slider-viewport {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    margin-top: 1rem;
+}
+
+.testimonials-slider-container {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    padding: 2rem 0;
+}
+
+.testimonials-slider-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+.testimonials-wrapper-flex {
+    display: flex;
+    gap: 2rem;
+    padding: 0 4rem;
+    /* Padding for arrows */
+}
+
+/* Overlays and Hover Arrows */
+.slider-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-overlay.left {
+    left: 0;
+    /* background: linear-gradient(to right, var(--testimonial-bg), transparent); */
+}
+
+.slider-overlay.right {
+    right: 0;
+    /* background: linear-gradient(to left, var(--testimonial-bg), transparent); */
+}
+
+.arrow-btn-hover {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    /* Invisible by default */
+    transition: opacity 0.3s, transform 0.2s, background 0.2s;
+}
+
+.slider-viewport:hover .arrow-btn-hover {
+    opacity: 1;
+    /* Visible on section hover */
+}
+
+.arrow-btn-hover:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Cards */
+.t-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    /* Square edges as requested */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 380px;
+    /* Fixed width for slider */
+    max-width: 380px;
+    transition: transform 0.3s, border-color 0.3s, background-color var(--transition-speed);
+    height: 380px;
+    /* Reduced height as requested */
+}
+
+.t-card:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+}
+
+/* Video Card Styles */
+.video-thumbnail {
+    flex: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    min-height: 250px;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.t-card:hover .video-overlay {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.play-btn {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s;
+}
+
+.play-icon {
+    fill: white;
+    margin-left: 4px;
+    /* Optical adjustment */
+}
+
+.t-card:hover .play-btn {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.video-info {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+}
+
+.speaker-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.speaker-role {
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.speaker-company {
+    display: block;
+    font-size: 16px;
+    color: #888;
+    /* Grey color */
+    margin-top: 0.2rem;
+}
+
+/* Text Quote Card Styles */
+.quote-content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 2rem;
+    flex: 1;
+}
+
+.quote-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.quote-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+}
+
+.quote-author {
+    display: flex;
+    flex-direction: column;
+}

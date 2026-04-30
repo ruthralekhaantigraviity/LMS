@@ -1,0 +1,138 @@
+/* =================================================
+   SCALER BANNER — Blue gradient CTA section
+   ================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+.sb-section {
+    background: var(--banner-bg);
+    padding: 5rem 2rem;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    position: relative;
+    transition: background var(--transition-speed);
+}
+
+/* Subtle noise/depth overlay */
+.sb-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(0, 0, 80, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.sb-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ---- Heading ---- */
+.sb-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    margin: 0;
+}
+
+.sb-line1 {
+    display: block;
+    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+}
+
+.sb-line2 {
+    display: block;
+    font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ---- CTA Button ---- */
+.sb-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 2.6rem;
+    background: #e91e8c;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow:
+        0 0 0 0 rgba(233, 30, 140, 0),
+        0 6px 24px rgba(233, 30, 140, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer sweep */
+.sb-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 45%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.18);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+}
+
+.sb-cta-btn:hover::before {
+    left: 130%;
+}
+
+.sb-cta-btn:hover {
+    background: #f0288f;
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 0 4px rgba(233, 30, 140, 0.2),
+        0 10px 36px rgba(233, 30, 140, 0.55),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sb-cta-btn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 16px rgba(233, 30, 140, 0.4),
+        0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 640px) {
+    .sb-section {
+        padding: 3.5rem 1.5rem;
+    }
+
+    .sb-cta-btn {
+        padding: 0.85rem 2rem;
+        font-size: 0.9rem;
+    }
+}

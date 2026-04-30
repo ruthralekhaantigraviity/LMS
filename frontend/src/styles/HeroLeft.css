@@ -1,0 +1,136 @@
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero-media-container {
+    position: relative;
+    width: 90%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Vertical Icons Strip (Matching Reference) */
+.floating-icons-strip {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.f-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.f-icon-box svg {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+/* Bottom Caption overlay */
+.hero-video-overlay {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.subtitle-text {
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #e0e0e0;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Stats Section Below Image */
+.hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-left: 0;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.stat-number-group {
+    display: flex;
+    align-items: flex-end;
+    line-height: 1;
+}
+
+.hero-left .stat-number {
+    font-size: 55px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 0.8;
+    font-family: 'Inter', sans-serif;
+}
+
+.stat-plus {
+    font-size: 50px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-left: 4px;
+    transform: translateY(0);
+    line-height: 1;
+}
+
+.hero-left .stat-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: none !important;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 2px;
+    margin-top: -8px;
+    /* Positioned above the + bar */
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-left .stat-label:hover {
+    color: white;
+    border-bottom-color: white;
+}
+
+@media (max-width: 768px) {
+    .hero-media-container {
+        max-width: 100%;
+    }
+
+    .stat-number {
+        font-size: 1.75rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
+}
