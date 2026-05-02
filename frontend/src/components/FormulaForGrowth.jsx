@@ -1,9 +1,11 @@
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import '../styles/FormulaForGrowth.css';
 
 const FormulaForGrowth = () => {
+    const navigate = useNavigate();
+
     return (
         <section className="formula-section">
             <div className="formula-wrapper">
@@ -13,7 +15,7 @@ const FormulaForGrowth = () => {
                     <span className="formula-label">FORMULA FOR GROWTH</span>
                     <h2 className="formula-heading">Why should you<br />upskill now?</h2>
 
-                    <button className="btn-book-class">
+                    <button className="btn-book-class" onClick={() => navigate('/apply')}>
                         BOOK A CLASS <ArrowUpRight size={18} />
                     </button>
                 </div>
