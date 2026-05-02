@@ -77,6 +77,11 @@ const HRDashboard = () => {
         addToast(message, type);
     };
 
+    const handleViewStudent = (student) => {
+        setSelectedStudent(student);
+        setIsStudentModalOpen(true);
+    };
+
     const handleCreateHrTask = (e) => {
         e.preventDefault();
         const taskToAdd = {
