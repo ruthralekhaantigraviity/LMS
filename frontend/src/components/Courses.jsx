@@ -36,10 +36,10 @@ const Courses = () => {
         setAdminCourses(storedCourses);
     }, []);
 
-    const UnifiedIcon = ({ gradient }) => (
-        <div className="unified-star-icon">
-            <Stars className="star-bg" size={120} />
-            <img src="/scalerlogo.svg" alt="Logo" className="scaler-icon-inner" />
+    const UnifiedIcon = () => (
+        <div className="unified-star-icon" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Stars className="star-bg" size={120} style={{ opacity: 0.15, position: 'absolute' }} />
+            <Stars size={60} color="white" strokeWidth={1.5} />
         </div>
     );
 
