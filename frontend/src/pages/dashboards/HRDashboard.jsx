@@ -78,8 +78,6 @@ const HRDashboard = () => {
     };
 
     const handleViewStudent = (student) => {
-        console.log('Opening student modal for:', student);
-        alert('Opening student modal for: ' + student.name);
         setSelectedStudent(student);
         setIsStudentModalOpen(true);
     };
