@@ -57,6 +57,12 @@ const AdminDashboard = () => {
     useEffect(() => {
         const storedLeads = JSON.parse(localStorage.getItem('scaler_leads') || '[]');
         setLeads(storedLeads);
+
+        // Load admin courses
+        const storedCourses = JSON.parse(localStorage.getItem('fic_courses'));
+        if (storedCourses && storedCourses.length > 0) {
+            setCourseList(storedCourses);
+        }
     }, [activeTab]); // Refresh when tab changes
 
     // --- Course Actions ---
@@ -70,7 +76,9 @@ const AdminDashboard = () => {
             price: `₹${Number(newCourse.price).toLocaleString()}`,
             status: 'Active'
         };
-        setCourseList([courseToAdd, ...courseList]);
+        const updatedCourses = [courseToAdd, ...courseList];
+        setCourseList(updatedCourses);
+        localStorage.setItem('fic_courses', JSON.stringify(updatedCourses));
         setIsCourseModalOpen(false);
         setNewCourse({ title: '', cat: 'tech', price: '' });
         addToast('Course added successfully!', 'success');
@@ -85,9 +93,11 @@ const AdminDashboard = () => {
     const handleUpdateCourse = (e) => {
         e.preventDefault();
         const updatedPrice = `₹${Number(editingCourse.rawPrice).toLocaleString()}`;
-        setCourseList(prev => prev.map(c => 
+        const updatedCourses = courseList.map(c => 
             c.id === editingCourse.id ? { ...editingCourse, price: updatedPrice } : c
-        ));
+        );
+        setCourseList(updatedCourses);
+        localStorage.setItem('fic_courses', JSON.stringify(updatedCourses));
         setIsEditCourseModalOpen(false);
         setEditingCourse(null);
         addToast('Course updated successfully!', 'success');
@@ -95,7 +105,9 @@ const AdminDashboard = () => {
 
     const handleDeleteCourse = (id) => {
         if (window.confirm('Are you sure you want to delete this course?')) {
-            setCourseList(prev => prev.filter(c => c.id !== id));
+            const updatedCourses = courseList.filter(c => c.id !== id);
+            setCourseList(updatedCourses);
+            localStorage.setItem('fic_courses', JSON.stringify(updatedCourses));
             addToast('Course deleted', 'error');
         }
     };

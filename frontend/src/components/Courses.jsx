@@ -1,5 +1,6 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import Modal from './Modal';
 import {
     Code,
     Database,
@@ -26,6 +27,13 @@ import '../styles/Courses.css';
 
 const Courses = () => {
     const scrollRef = useRef(null);
+    const [adminCourses, setAdminCourses] = useState([]);
+    const [selectedCourse, setSelectedCourse] = useState(null);
+
+    useEffect(() => {
+        const storedCourses = JSON.parse(localStorage.getItem('fic_courses') || '[]');
+        setAdminCourses(storedCourses);
+    }, []);
 
     const UnifiedIcon = ({ gradient }) => (
         <div className="unified-star-icon">
@@ -135,6 +143,26 @@ const Courses = () => {
         }
     ];
 
+    // Merge admin courses to display in the customer page
+    const mappedAdminCourses = adminCourses.filter(c => c.status === 'Active').map(c => ({
+        title: c.title,
+        gradient: "banner-magenta",
+        icon: <UnifiedIcon />,
+        badge: "NEW FIC COURSE",
+        meta: [
+            { label: "Admin Added", icon: <Stars size={14} /> },
+            { label: `Duration: ${c.dur}`, icon: <Clock size={14} /> },
+            { label: `Price: ${c.price}`, icon: <Briefcase size={14} /> }
+        ],
+        type: "ONLINE PROGRAM",
+        typeClass: "online",
+        isNew: true,
+        price: c.price,
+        duration: c.dur
+    }));
+
+    const allCourses = [...courses, ...mappedAdminCourses];
+
     const scroll = (direction) => {
         const { current } = scrollRef;
         if (current) {
@@ -169,8 +197,8 @@ const Courses = () => {
 
                 <div className="courses-slider-container" ref={scrollRef}>
                     <div className="courses-wrapper-flex">
-                        {courses.map((course, index) => (
-                            <div key={index} className="course-card-full">
+                        {allCourses.map((course, index) => (
+                            <div key={index} className="course-card-full" onClick={() => setSelectedCourse(course)} style={{cursor: 'pointer'}}>
                                 {/* Banner */}
                                 <div className={`card-banner-v2 ${course.gradient}`}>
                                     <div className="banner-icon-large">
@@ -232,6 +260,56 @@ const Courses = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Course Details Modal */}
+            <Modal isOpen={!!selectedCourse} onClose={() => setSelectedCourse(null)} title="Course Details & Fees">
+                {selectedCourse && (
+                    <div className="course-details-modal-content">
+                        <div className={`card-banner-v2 ${selectedCourse.gradient}`} style={{ height: '120px', borderRadius: '12px', marginBottom: '20px' }}>
+                            <div className="banner-icon-large" style={{ opacity: 0.8, transform: 'scale(0.8)' }}>
+                                {selectedCourse.icon}
+                            </div>
+                        </div>
+                        <h2 style={{ fontSize: '1.5rem', marginBottom: '10px', color: '#1a202c' }}>{selectedCourse.title}</h2>
+                        <div style={{ display: 'inline-block', background: 'rgba(230, 0, 92, 0.1)', color: '#e6005c', padding: '4px 12px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600, marginBottom: '20px' }}>
+                            {selectedCourse.badge}
+                        </div>
+                        
+                        <div className="course-fees-section" style={{ background: '#f7fafc', padding: '20px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+                            <h3 style={{ fontSize: '1.2rem', marginBottom: '15px', color: '#2d3748', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Trophy size={18} color="#e6005c"/> Program Fees & Structure
+                            </h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+                                <div>
+                                    <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '4px' }}>Total Fees</p>
+                                    <p style={{ fontSize: '1.4rem', fontWeight: 700, color: '#1a202c' }}>{selectedCourse.price || '₹85,000'}</p>
+                                </div>
+                                <div>
+                                    <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '4px' }}>Duration</p>
+                                    <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1a202c' }}>{selectedCourse.duration || selectedCourse.meta.find(m => m.label.includes('Duration'))?.label.replace('Duration: ', '') || '6 Months'}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="course-highlights-section">
+                            <h4 style={{ fontSize: '1.1rem', marginBottom: '12px', color: '#2d3748' }}>Program Highlights</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                {selectedCourse.meta.map((m, i) => (
+                                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#4a5568', fontSize: '0.95rem' }}>
+                                        <span style={{ color: '#e6005c' }}>{m.icon}</span>
+                                        {m.label}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className="modal-actions" style={{ marginTop: '30px', display: 'flex', gap: '10px' }}>
+                            <button className="submit-btn" style={{ flex: 1, padding: '12px', background: '#e6005c', color: 'white', border: 'none', borderRadius: '6px', fontWeight: 600, cursor: 'pointer' }} onClick={() => { setSelectedCourse(null); window.location.href='/apply'; }}>Apply Now</button>
+                            <button className="cancel-btn" style={{ padding: '12px 20px', background: '#edf2f7', color: '#4a5568', border: 'none', borderRadius: '6px', fontWeight: 600, cursor: 'pointer' }} onClick={() => setSelectedCourse(null)}>Close</button>
+                        </div>
+                    </div>
+                )}
+            </Modal>
         </section>
     );
 };
