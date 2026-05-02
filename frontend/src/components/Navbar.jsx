@@ -12,6 +12,12 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('userName'));
   const [currentUser, setCurrentUser] = useState({ name: localStorage.getItem('userName') || 'User' });
   const [theme, setTheme] = useState('dark');
+  const [adminCourses, setAdminCourses] = useState([]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem('fic_courses') || '[]');
+    setAdminCourses(stored.filter(c => c.status === 'Active'));
+  }, [isProgramsOpen]);
   const location = useLocation();
 
   useEffect(() => {
@@ -250,76 +256,19 @@ const Navbar = () => {
                 <div className="programs-section">
                   <h3 className="programs-section-header">ONLINE PROGRAMS</h3>
                   <div className="programs-grid">
-                    <Link to="/program/software-development" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#0052cc' }}>
-                        <div className="p-icon-code">{"</>"}</div>
-                      </div>
-                      <div className="program-info">
-                        <div className="program-badge popular">POPULAR</div>
-                        <h4 className="program-title">Software Development</h4>
-                        <p className="program-subtitle">with Specialisation in AI</p>
-                      </div>
-                    </Link>
-                    <Link to="/program/data-science" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#9333ea' }}>
-                        <Menu size={36} color="#fff" />
-                      </div>
-                      <div className="program-info">
-                        <div className="program-badge popular">POPULAR</div>
-                        <h4 className="program-title">Data Science</h4>
-                        <p className="program-subtitle">with Specialisation in AI</p>
-                      </div>
-                    </Link>
-                    <Link to="#" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#be123c' }}>
-                        <div className="p-icon-sparkles">✦</div>
-                      </div>
-                      <div className="program-info">
-                        <h4 className="program-title">Advanced AI and Machine Learning</h4>
-                      </div>
-                    </Link>
-                    <Link to="#" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#be185d' }}>
-                        <div className="p-icon-nexus">N</div>
-                      </div>
-                      <div className="program-info">
-                        <h4 className="program-title">DevOps and Cloud Computing</h4>
-                      </div>
-                    </Link>
-                    <Link to="#" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#b45309' }}>
-                        <div className="p-icon-grad">{"</>"}🎓</div>
-                      </div>
-                      <div className="program-info">
-                        <h4 className="program-title">Master's in Software Development</h4>
-                      </div>
-                    </Link>
-                    <Link to="#" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#857f00' }}>
-                        <div className="p-icon-grad-list">≡🎓</div>
-                      </div>
-                      <div className="program-info">
-                        <h4 className="program-title">Master's in Data Science</h4>
-                      </div>
-                    </Link>
-                    <Link to="#" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#f59e0b' }}>
-                        <div className="p-icon-briefcase">💼✦</div>
-                      </div>
-                      <div className="program-info">
-                        <div className="program-badge new">NEW</div>
-                        <h4 className="program-title">Online PGP in Business & AI</h4>
-                      </div>
-                    </Link>
-                    <Link to="#" className="program-card">
-                      <div className="program-icon-box" style={{ background: '#b9005a' }}>
-                        <Cpu size={36} color="#fff" />
-                      </div>
-                      <div className="program-info">
-                        <div className="program-badge new">NEW</div>
-                        <h4 className="program-title">AI Engineering Advanced Certification by IIT-Roorkee, CEC</h4>
-                      </div>
-                    </Link>
+                    {/* Dynamic Admin Courses from Admin Dashboard */}
+                    {adminCourses.map((course) => (
+                      <Link to="#" key={course.id} className="program-card">
+                        <div className="program-icon-box" style={{ background: '#e6005c' }}>
+                          <div className="p-icon-nexus">{course.title.charAt(0)}</div>
+                        </div>
+                        <div className="program-info">
+                          <div className="program-badge popular">NEW</div>
+                          <h4 className="program-title">{course.title}</h4>
+                          <p className="program-subtitle">{course.dur} • {course.price}</p>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 </div>
 
