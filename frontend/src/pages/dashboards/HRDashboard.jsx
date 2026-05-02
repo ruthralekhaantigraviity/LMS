@@ -12,7 +12,8 @@ import {
   ShieldCheck,
   FileText,
   Plus,
-  ClipboardList
+  ClipboardList,
+  LayoutDashboard
 } from 'lucide-react';
 import ThemeToggle from '../../components/ThemeToggle';
 import Modal from '../../components/Modal';
@@ -23,7 +24,7 @@ const HRDashboard = () => {
     const { user, logout } = useAuth();
     const { addToast } = useToast();
     const [searchQuery, setSearchQuery] = useState('');
-    const [activeTab, setActiveTab] = useState('bookings');
+    const [activeTab, setActiveTab] = useState('overview');
     
     const [leads, setLeads] = useState([]);
     
@@ -56,8 +57,20 @@ const HRDashboard = () => {
         setLeads(updatedLeads);
         localStorage.setItem('scaler_leads', JSON.stringify(updatedLeads));
         
-        const message = newStatus === 'active' ? 'Student enrolled successfully!' : 'Lead status updated';
-        addToast(message, newStatus === 'active' ? 'success' : 'info');
+        let message = 'Status updated';
+        let type = 'info';
+
+        if (newStatus === 'active') {
+            message = 'Student enrolled successfully!';
+            type = 'success';
+        } else if (newStatus === 'called') {
+            message = 'Lead marked as called';
+        } else if (newStatus === 'rejected') {
+            message = 'Lead marked as rejected';
+            type = 'error';
+        }
+
+        addToast(message, type);
     };
 
     const handleCreateHrTask = (e) => {
@@ -86,6 +99,9 @@ const HRDashboard = () => {
                     </div>
                 </div>
                 <nav className="sidebar-nav">
+                    <button className={activeTab === 'overview' ? 'active' : ''} onClick={() => setActiveTab('overview')}>
+                        <LayoutDashboard size={20} /> Overview Dashboard
+                    </button>
                     <button className={activeTab === 'bookings' ? 'active' : ''} onClick={() => setActiveTab('bookings')}>
                         <Users size={20} /> New Inquiries
                     </button>
@@ -107,8 +123,18 @@ const HRDashboard = () => {
             <main className="dashboard-content">
                 <header className="content-header">
                     <div className="header-title">
-                        <h1>{activeTab === 'bookings' ? 'New Admissions' : activeTab === 'followups' ? 'Follow-up Queue' : activeTab === 'tasks' ? 'Assign Trainer Tasks' : 'Enrollment Records'}</h1>
-                        <p>{activeTab === 'tasks' ? 'Create and assign operational tasks to trainers' : 'Track and convert your student inquiries'}</p>
+                        <h1>{
+                            activeTab === 'overview' ? 'HR Overview' :
+                            activeTab === 'bookings' ? 'New Admissions' : 
+                            activeTab === 'followups' ? 'Follow-up Queue' : 
+                            activeTab === 'tasks' ? 'Assign Trainer Tasks' : 
+                            'Enrollment Records'
+                        }</h1>
+                        <p>{
+                            activeTab === 'overview' ? 'Summary of your admission pipeline' :
+                            activeTab === 'tasks' ? 'Create and assign operational tasks to trainers' : 
+                            'Track and convert your student inquiries'
+                        }</p>
                     </div>
                     <div className="header-actions">
                         <ThemeToggle />
@@ -125,7 +151,7 @@ const HRDashboard = () => {
                 </header>
                 
                 <div className="content-body">
-                    {activeTab !== 'tasks' && (
+                    {activeTab === 'overview' && (
                     <div className="overview-cards">
                         <div className="stat-card">
                             <div className="stat-icon pending"><Users size={24} /></div>
@@ -150,8 +176,17 @@ const HRDashboard = () => {
                         </div>
                     </div>
                     )}
+                    
+                    {activeTab === 'overview' && (
+                        <div className="manage-section">
+                            <div className="section-header">
+                                <h3>Recent Activity</h3>
+                            </div>
+                            <p style={{ color: 'var(--text-muted)' }}>Welcome to your overview. Here you can see a high-level summary of all inquiries.</p>
+                        </div>
+                    )}
 
-                    {activeTab !== 'tasks' && (
+                    {activeTab !== 'tasks' && activeTab !== 'overview' && (
                     <div className="manage-section">
                         <div className="section-header">
                             <h3>Lead Management Pipeline</h3>
@@ -196,7 +231,18 @@ const HRDashboard = () => {
                                         </td>
                                         <td>
                                             <div className="status-cell">
-                                                <span className={`badge ${student.status}`}>{student.status}</span>
+                                                <span className={`badge ${student.status}`}>
+                                                    <select 
+                                                        className="status-select"
+                                                        value={student.status}
+                                                        onChange={(e) => handleAction(student.id, e.target.value)}
+                                                    >
+                                                        <option value="pending">Pending</option>
+                                                        <option value="called">Called</option>
+                                                        <option value="active">Enrolled</option>
+                                                        <option value="rejected">Rejected</option>
+                                                    </select>
+                                                </span>
                                                 <span className="time-ago">{student.date}</span>
                                             </div>
                                         </td>
