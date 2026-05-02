@@ -10,7 +10,9 @@ import {
   MoreVertical,
   Mail,
   Plus,
-  Edit
+  Edit,
+  ClipboardList,
+  CheckCircle
 } from 'lucide-react';
 import ThemeToggle from '../../components/ThemeToggle';
 import Modal from '../../components/Modal';
@@ -28,6 +30,12 @@ const TrainerDashboard = () => {
     const [selectedTask, setSelectedTask] = useState(null);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [newTask, setNewTask] = useState({ title: '', course: '', due: '', difficulty: 'Medium' });
+    const [hrTasks, setHrTasks] = useState([]);
+
+    React.useEffect(() => {
+        const storedTasks = JSON.parse(localStorage.getItem('hr_trainer_tasks') || '[]');
+        setHrTasks(storedTasks);
+    }, [activeTab]);
 
     const [tasks, setTasks] = useState([
         { id: 1, title: 'React Hooks Deep Dive', course: 'Advanced React', submissions: 12, due: 'Tomorrow', difficulty: 'Medium' },
@@ -78,6 +86,15 @@ const TrainerDashboard = () => {
         setIsGradeModalOpen(false);
     };
 
+    const handleCompleteHrTask = (taskId) => {
+        const updatedTasks = hrTasks.map(t => 
+            t.id === taskId ? { ...t, status: 'Completed' } : t
+        );
+        setHrTasks(updatedTasks);
+        localStorage.setItem('hr_trainer_tasks', JSON.stringify(updatedTasks));
+        addToast('Task marked as completed!', 'success');
+    };
+
     return (
         <div className="dashboard-container trainer-dashboard">
             <aside className="dashboard-sidebar">
@@ -100,6 +117,9 @@ const TrainerDashboard = () => {
                     <button className={activeTab === 'assignments' ? 'active' : ''} onClick={() => setActiveTab('assignments')}>
                         <FileText size={20} /> Assignments
                     </button>
+                    <button className={activeTab === 'hrtasks' ? 'active' : ''} onClick={() => setActiveTab('hrtasks')}>
+                        <ClipboardList size={20} /> Admin Tasks
+                    </button>
                     <button className="logout-btn" onClick={logout}>
                         <LogOut size={20} /> Logout
                     </button>
@@ -109,8 +129,8 @@ const TrainerDashboard = () => {
             <main className="dashboard-content">
                 <header className="content-header">
                     <div className="header-title">
-                        <h1>{activeTab === 'courses' ? 'Teaching Schedule' : activeTab === 'students' ? 'Student Progress' : activeTab === 'live' ? 'Live Classroom' : 'Curriculum Tasks'}</h1>
-                        <p>Manage your classes and mentor your students</p>
+                        <h1>{activeTab === 'courses' ? 'Teaching Schedule' : activeTab === 'students' ? 'Student Progress' : activeTab === 'live' ? 'Live Classroom' : activeTab === 'hrtasks' ? 'Operational Tasks' : 'Curriculum Tasks'}</h1>
+                        <p>{activeTab === 'hrtasks' ? 'Complete tasks assigned to you by Administration and HR' : 'Manage your classes and mentor your students'}</p>
                     </div>
                     <div className="header-actions">
                         <ThemeToggle />
@@ -301,6 +321,43 @@ const TrainerDashboard = () => {
                                         <button className="view-btn small" onClick={() => handleReviewTask(task)}>Review Submissions</button>
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === 'hrtasks' && (
+                        <div className="manage-section">
+                            <div className="section-header">
+                                <h3>Tasks from HR & Administration</h3>
+                            </div>
+                            <div className="assignment-grid">
+                                {hrTasks.map((task) => (
+                                    <div className={`task-card-wide ${task.status === 'Completed' ? 'completed-task' : ''}`} key={task.id}>
+                                        <div className="task-info-main">
+                                            <div className="task-icon-bg" style={{background: task.status === 'Completed' ? 'rgba(32, 201, 151, 0.1)' : 'rgba(102, 126, 234, 0.1)', color: task.status === 'Completed' ? '#20c997' : '#667eea'}}>
+                                                {task.status === 'Completed' ? <CheckCircle size={20} /> : <ClipboardList size={20} />}
+                                            </div>
+                                            <div className="task-titles">
+                                                <h4 style={{ textDecoration: task.status === 'Completed' ? 'line-through' : 'none', color: task.status === 'Completed' ? '#a0aec0' : 'inherit' }}>{task.title}</h4>
+                                                <span>Assigned: {task.date} • Priority: {task.priority}</span>
+                                            </div>
+                                        </div>
+                                        <div className="task-description-box" style={{ padding: '0.5rem 1rem', background: 'rgba(0,0,0,0.2)', borderRadius: '6px', fontSize: '0.9rem', color: '#cbd5e0', flex: 1, margin: '0 1rem' }}>
+                                            {task.description}
+                                        </div>
+                                        {task.status !== 'Completed' ? (
+                                            <button className="view-btn small" onClick={() => handleCompleteHrTask(task.id)}>Mark Completed</button>
+                                        ) : (
+                                            <div style={{ color: '#20c997', fontWeight: 600, fontSize: '0.9rem', padding: '0 1rem' }}>Done ✓</div>
+                                        )}
+                                    </div>
+                                ))}
+                                {hrTasks.length === 0 && (
+                                    <div className="empty-state" style={{gridColumn: '1 / -1'}}>
+                                        <CheckCircle size={48} style={{color: '#20c997', opacity: 0.5, marginBottom: '1rem'}} />
+                                        <p>You have no pending operational tasks from HR!</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}

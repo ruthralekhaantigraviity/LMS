@@ -9,9 +9,13 @@ import {
   Search,
   Filter,
   Mail,
-  ShieldCheck
+  ShieldCheck,
+  FileText,
+  Plus,
+  ClipboardList
 } from 'lucide-react';
 import ThemeToggle from '../../components/ThemeToggle';
+import Modal from '../../components/Modal';
 import { useToast } from '../../context/ToastContext';
 import '../../styles/Dashboards.css';
 
@@ -21,8 +25,12 @@ const HRDashboard = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeTab, setActiveTab] = useState('bookings');
     
-    // Load leads from localStorage
     const [leads, setLeads] = useState([]);
+    
+    // HR Tasks
+    const [hrTasks, setHrTasks] = useState([]);
+    const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
+    const [newTask, setNewTask] = useState({ title: '', description: '', trainer: '', priority: 'Medium' });
 
     useEffect(() => {
         const storedLeads = JSON.parse(localStorage.getItem('scaler_leads') || '[]');
@@ -38,6 +46,9 @@ const HRDashboard = () => {
         } else {
             setLeads(storedLeads);
         }
+
+        const storedTasks = JSON.parse(localStorage.getItem('hr_trainer_tasks') || '[]');
+        setHrTasks(storedTasks);
     }, []);
 
     const handleAction = (id, newStatus) => {
@@ -47,6 +58,22 @@ const HRDashboard = () => {
         
         const message = newStatus === 'active' ? 'Student enrolled successfully!' : 'Lead status updated';
         addToast(message, newStatus === 'active' ? 'success' : 'info');
+    };
+
+    const handleCreateHrTask = (e) => {
+        e.preventDefault();
+        const taskToAdd = {
+            id: Date.now(),
+            ...newTask,
+            date: new Date().toLocaleDateString(),
+            status: 'Pending'
+        };
+        const updatedTasks = [taskToAdd, ...hrTasks];
+        setHrTasks(updatedTasks);
+        localStorage.setItem('hr_trainer_tasks', JSON.stringify(updatedTasks));
+        setIsCreateTaskModalOpen(false);
+        setNewTask({ title: '', description: '', trainer: '', priority: 'Medium' });
+        addToast('Task successfully assigned to trainer!', 'success');
     };
 
     return (
@@ -68,6 +95,9 @@ const HRDashboard = () => {
                     <button className={activeTab === 'enrolled' ? 'active' : ''} onClick={() => setActiveTab('enrolled')}>
                         <CheckCircle size={20} /> Enrolled Students
                     </button>
+                    <button className={activeTab === 'tasks' ? 'active' : ''} onClick={() => setActiveTab('tasks')}>
+                        <FileText size={20} /> Assign Tasks
+                    </button>
                     <button className="logout-btn" onClick={logout}>
                         <LogOut size={20} /> Logout
                     </button>
@@ -77,8 +107,8 @@ const HRDashboard = () => {
             <main className="dashboard-content">
                 <header className="content-header">
                     <div className="header-title">
-                        <h1>{activeTab === 'bookings' ? 'New Admissions' : activeTab === 'followups' ? 'Follow-up Queue' : 'Enrollment Records'}</h1>
-                        <p>Track and convert your student inquiries</p>
+                        <h1>{activeTab === 'bookings' ? 'New Admissions' : activeTab === 'followups' ? 'Follow-up Queue' : activeTab === 'tasks' ? 'Assign Trainer Tasks' : 'Enrollment Records'}</h1>
+                        <p>{activeTab === 'tasks' ? 'Create and assign operational tasks to trainers' : 'Track and convert your student inquiries'}</p>
                     </div>
                     <div className="header-actions">
                         <ThemeToggle />
@@ -95,6 +125,7 @@ const HRDashboard = () => {
                 </header>
                 
                 <div className="content-body">
+                    {activeTab !== 'tasks' && (
                     <div className="overview-cards">
                         <div className="stat-card">
                             <div className="stat-icon pending"><Users size={24} /></div>
@@ -118,7 +149,9 @@ const HRDashboard = () => {
                             </div>
                         </div>
                     </div>
+                    )}
 
+                    {activeTab !== 'tasks' && (
                     <div className="manage-section">
                         <div className="section-header">
                             <h3>Lead Management Pipeline</h3>
@@ -201,7 +234,109 @@ const HRDashboard = () => {
                             </div>
                         )}
                     </div>
+                    )}
+
+                    {activeTab === 'tasks' && (
+                        <div className="manage-section">
+                            <div className="section-header">
+                                <h3>Trainer Task Assignments</h3>
+                                <button className="add-btn" onClick={() => setIsCreateTaskModalOpen(true)}>
+                                    <Plus size={18} /> Assign New Task
+                                </button>
+                            </div>
+                            <div className="assignment-grid">
+                                {hrTasks.map((task) => (
+                                    <div className="task-card-wide" key={task.id}>
+                                        <div className="task-info-main">
+                                            <div className="task-icon-bg" style={{background: 'rgba(230, 0, 92, 0.1)', color: '#e6005c'}}>
+                                                <ClipboardList size={20} />
+                                            </div>
+                                            <div className="task-titles">
+                                                <h4>{task.title}</h4>
+                                                <span>Trainer: {task.trainer}</span>
+                                            </div>
+                                        </div>
+                                        <div className="task-stats-horizontal">
+                                            <div className="task-stat">
+                                                <strong>{task.status}</strong>
+                                                <span>Status</span>
+                                            </div>
+                                            <div className="task-stat">
+                                                <strong>{task.date}</strong>
+                                                <span>Date Assigned</span>
+                                            </div>
+                                            <div className="task-stat">
+                                                <strong>{task.priority}</strong>
+                                                <span>Priority</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                {hrTasks.length === 0 && (
+                                    <div className="empty-state" style={{gridColumn: '1 / -1'}}>
+                                        <ClipboardList size={48} style={{opacity: 0.5, marginBottom: '1rem'}} />
+                                        <p>No tasks assigned yet. Click "Assign New Task" to create one.</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
+
+                {/* Create HR Task Modal */}
+                <Modal isOpen={isCreateTaskModalOpen} onClose={() => setIsCreateTaskModalOpen(false)} title="Assign Task to Trainer">
+                    <form className="dashboard-form" onSubmit={handleCreateHrTask}>
+                        <div className="form-group">
+                            <label>Task Title</label>
+                            <input 
+                                type="text" 
+                                placeholder="e.g. Prepare curriculum for next week" 
+                                value={newTask.title}
+                                onChange={(e) => setNewTask({...newTask, title: e.target.value})}
+                                required 
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Assign To Trainer</label>
+                            <select 
+                                value={newTask.trainer}
+                                onChange={(e) => setNewTask({...newTask, trainer: e.target.value})}
+                                required
+                            >
+                                <option value="" disabled>Select a trainer</option>
+                                <option value="All Trainers">All Trainers</option>
+                                <option value="John Doe">John Doe</option>
+                                <option value="Sarah Smith">Sarah Smith</option>
+                                <option value="Michael Tech">Michael Tech</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Description / Instructions</label>
+                            <textarea 
+                                placeholder="Details about what the trainer needs to do..." 
+                                value={newTask.description}
+                                onChange={(e) => setNewTask({...newTask, description: e.target.value})}
+                                required
+                                rows="3"
+                            ></textarea>
+                        </div>
+                        <div className="form-group">
+                            <label>Priority</label>
+                            <select 
+                                value={newTask.priority}
+                                onChange={(e) => setNewTask({...newTask, priority: e.target.value})}
+                            >
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div className="form-actions">
+                            <button type="button" className="cancel-btn" onClick={() => setIsCreateTaskModalOpen(false)}>Cancel</button>
+                            <button type="submit" className="submit-btn">Assign Task</button>
+                        </div>
+                    </form>
+                </Modal>
             </main>
         </div>
     );
