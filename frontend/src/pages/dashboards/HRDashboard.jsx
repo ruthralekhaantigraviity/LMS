@@ -32,6 +32,10 @@ const HRDashboard = () => {
     const [hrTasks, setHrTasks] = useState([]);
     const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
     const [newTask, setNewTask] = useState({ title: '', description: '', trainer: '', priority: 'Medium' });
+    
+    // Student Details Modal
+    const [isStudentModalOpen, setIsStudentModalOpen] = useState(false);
+    const [selectedStudent, setSelectedStudent] = useState(null);
 
     useEffect(() => {
         const storedLeads = JSON.parse(localStorage.getItem('scaler_leads') || '[]');
@@ -259,7 +263,7 @@ const HRDashboard = () => {
                                                     </button>
                                                 )}
                                                 {student.status === 'active' && (
-                                                    <button className="action-btn-small view" onClick={() => addToast('Opening student file...', 'info')}>
+                                                    <button className="action-btn-small view" onClick={() => handleViewStudent(student)}>
                                                         <Mail size={14} /> Message
                                                     </button>
                                                 )}
@@ -382,6 +386,54 @@ const HRDashboard = () => {
                             <button type="submit" className="submit-btn">Assign Task</button>
                         </div>
                     </form>
+                </Modal>
+
+                {/* Student Details / Messaging Modal */}
+                <Modal isOpen={isStudentModalOpen} onClose={() => setIsStudentModalOpen(false)} title="Student File & Messaging">
+                    {selectedStudent && (
+                        <div className="student-details-view">
+                            <div className="details-header-top">
+                                <div className="avatar-large">{selectedStudent.name.charAt(0)}</div>
+                                <div className="details-main-info">
+                                    <h3>{selectedStudent.name}</h3>
+                                    <p>{selectedStudent.email} • {selectedStudent.phone}</p>
+                                    <span className="badge active">Enrolled Student</span>
+                                </div>
+                            </div>
+
+                            <div className="details-grid">
+                                <div className="detail-item">
+                                    <label>Program Enrolled</label>
+                                    <strong>{selectedStudent.program || selectedStudent.course}</strong>
+                                </div>
+                                <div className="detail-item">
+                                    <label>Admission Date</label>
+                                    <strong>{selectedStudent.date}</strong>
+                                </div>
+                                <div className="detail-item">
+                                    <label>Source</label>
+                                    <strong>{selectedStudent.source || 'Direct'}</strong>
+                                </div>
+                            </div>
+
+                            <hr style={{ margin: '1.5rem 0', border: 'none', borderTop: '1px solid var(--border-color)' }} />
+
+                            <div className="message-area">
+                                <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', display: 'block' }}>Send Message to Student</label>
+                                <textarea 
+                                    placeholder="Type your message here..." 
+                                    rows="4" 
+                                    style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', background: 'var(--bg-light)', border: '1px solid var(--border-color)', color: 'var(--text-main)', resize: 'none' }}
+                                ></textarea>
+                                <div className="form-actions" style={{ marginTop: '1rem' }}>
+                                    <button className="add-btn" onClick={() => {
+                                        addToast(`Message sent to ${selectedStudent.name}!`, 'success');
+                                        setIsStudentModalOpen(false);
+                                    }}>Send Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </Modal>
             </main>
         </div>

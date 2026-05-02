@@ -1613,3 +1613,68 @@
     padding: 0.2rem 0.6rem;
     border-radius: 2rem;
 }
+
+/* Student Details Modal Styling */
+.student-details-view {
+    padding: 0.5rem;
+}
+
+.details-header-top {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.avatar-large {
+    width: 72px;
+    height: 72px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    box-shadow: 0 8px 16px rgba(230, 0, 92, 0.2);
+}
+
+.details-main-info h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.details-main-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-item label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.detail-item strong {
+    font-size: 1rem;
+    color: var(--text-main);
+}
