@@ -29,6 +29,7 @@ const Courses = () => {
     const scrollRef = useRef(null);
     const [adminCourses, setAdminCourses] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState(null);
+    const [programFilter, setProgramFilter] = useState('online');
 
     useEffect(() => {
         const storedCourses = JSON.parse(localStorage.getItem('fic_courses') || '[]');
@@ -163,6 +164,14 @@ const Courses = () => {
 
     const allCourses = [...courses, ...mappedAdminCourses];
 
+    const filteredCourses = allCourses.filter(course => {
+        if (programFilter === 'online') {
+            return course.type === "ONLINE PROGRAM";
+        } else {
+            return course.type === "ON CAMPUS PROGRAM" || course.type === "ON-CAMPUS PROGRAM";
+        }
+    });
+
     const scroll = (direction) => {
         const { current } = scrollRef;
         if (current) {
@@ -182,8 +191,18 @@ const Courses = () => {
                     <h2 className="courses-heading">Programs To Help You Upskill</h2>
 
                     <div className="toggle-group">
-                        <button className="toggle-btn active">Online Programs</button>
-                        <button className="toggle-btn">On-Campus Programs</button>
+                        <button 
+                            className={`toggle-btn ${programFilter === 'online' ? 'active' : ''}`}
+                            onClick={() => setProgramFilter('online')}
+                        >
+                            Online Programs
+                        </button>
+                        <button 
+                            className={`toggle-btn ${programFilter === 'campus' ? 'active' : ''}`}
+                            onClick={() => setProgramFilter('campus')}
+                        >
+                            On-Campus Programs
+                        </button>
                     </div>
                 </div>
             </div>
@@ -197,7 +216,7 @@ const Courses = () => {
 
                 <div className="courses-slider-container" ref={scrollRef}>
                     <div className="courses-wrapper-flex">
-                        {allCourses.map((course, index) => (
+                        {filteredCourses.map((course, index) => (
                             <div key={index} className="course-card-full" onClick={() => setSelectedCourse(course)} style={{cursor: 'pointer'}}>
                                 {/* Banner */}
                                 <div className={`card-banner-v2 ${course.gradient}`}>
