@@ -37,6 +37,12 @@ const StudentDashboard = () => {
     const [passedExams, setPassedExams] = useState([]);
     const [currentExam, setCurrentExam] = useState(null);
     const [examStep, setExamStep] = useState(0);
+    const [adminCourses, setAdminCourses] = useState([]);
+
+    React.useEffect(() => {
+        const stored = JSON.parse(localStorage.getItem('fic_courses') || '[]');
+        setAdminCourses(stored.filter(c => c.status === 'Active'));
+    }, [activeTab]);
 
     const [enrolledCourses] = useState([
         { id: 1, title: 'Full Stack Web Development', instructor: 'David Miller', progress: 40, lessons: '12/30', img: 'tech-bg' },
@@ -269,24 +275,46 @@ const StudentDashboard = () => {
                     {activeTab === 'courses' && (
                         <div className="manage-section">
                             <div className="section-header">
-                                <h3>Browse All Courses</h3>
+                                <h3 className="programs-section-header" style={{ color: 'var(--text-main)', marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '800' }}>ONLINE PROGRAMS</h3>
                             </div>
-                            <div className="course-grid">
-                                {[
-                                    { title: 'Python for Data Science', instructor: 'Alan Turing', price: '₹4,999', rating: '4.8' },
-                                    { title: 'Cloud DevOps with AWS', instructor: 'Jeff Bezos', price: '₹6,999', rating: '4.7' },
-                                    { title: 'Mobile App Dev with Flutter', instructor: 'Tim Cook', price: '₹5,499', rating: '4.9' },
-                                ].map((course, idx) => (
-                                    <div className="dashboard-course-card student-card" key={idx}>
-                                        <div className="course-card-img student-img tech-bg"></div>
-                                        <div className="course-card-body">
-                                            <h4>{course.title}</h4>
-                                            <p className="instructor-name">By: {course.instructor}</p>
-                                            <div className="course-card-meta">
-                                                <span>⭐ {course.rating}</span>
-                                                <span>{course.price}</span>
-                                            </div>
-                                            <button className="view-btn" onClick={() => addToast(`Enrolling in ${course.title}...`, 'success')}>Enroll Now</button>
+                            <div className="programs-grid" style={{ 
+                                display: 'grid', 
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+                                gap: '1.5rem' 
+                            }}>
+                                {/* Hardcoded Popular Programs */}
+                                <div className="program-card" style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '1.25rem', display: 'flex', gap: '1rem', alignItems: 'center', transition: 'var(--transition)', cursor: 'pointer' }}>
+                                    <div className="program-icon-box" style={{ background: '#0052cc', width: '60px', height: '60px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyCenter: 'center', flexShrink: 0, color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                        <div style={{ margin: 'auto' }}>{"</>"}</div>
+                                    </div>
+                                    <div className="program-info">
+                                        <div className="program-badge popular" style={{ fontSize: '0.65rem', background: '#f59e0b', color: 'white', padding: '2px 8px', borderRadius: '4px', width: 'fit-content', fontWeight: 'bold', marginBottom: '4px' }}>POPULAR</div>
+                                        <h4 className="program-title" style={{ margin: 0, fontSize: '1rem', fontWeight: '700' }}>Software Development</h4>
+                                        <p className="program-subtitle" style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}>with Specialisation in AI</p>
+                                    </div>
+                                </div>
+
+                                <div className="program-card" style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '1.25rem', display: 'flex', gap: '1rem', alignItems: 'center', transition: 'var(--transition)', cursor: 'pointer' }}>
+                                    <div className="program-icon-box" style={{ background: '#9333ea', width: '60px', height: '60px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyCenter: 'center', flexShrink: 0, color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                        <div style={{ margin: 'auto' }}>≡</div>
+                                    </div>
+                                    <div className="program-info">
+                                        <div className="program-badge popular" style={{ fontSize: '0.65rem', background: '#f59e0b', color: 'white', padding: '2px 8px', borderRadius: '4px', width: 'fit-content', fontWeight: 'bold', marginBottom: '4px' }}>POPULAR</div>
+                                        <h4 className="program-title" style={{ margin: 0, fontSize: '1rem', fontWeight: '700' }}>Data Science</h4>
+                                        <p className="program-subtitle" style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}>with Specialisation in AI</p>
+                                    </div>
+                                </div>
+
+                                {/* Dynamic Admin Courses */}
+                                {adminCourses.map((course) => (
+                                    <div className="program-card" key={course.id} style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '1.25rem', display: 'flex', gap: '1rem', alignItems: 'center', transition: 'var(--transition)', cursor: 'pointer' }} onClick={() => addToast(`Exploring ${course.title}...`, 'info')}>
+                                        <div className="program-icon-box" style={{ background: '#e6005c', width: '60px', height: '60px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyCenter: 'center', flexShrink: 0, color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                            <div style={{ margin: 'auto' }}>{course.title.charAt(0)}</div>
+                                        </div>
+                                        <div className="program-info">
+                                            <div className="program-badge new" style={{ fontSize: '0.65rem', background: '#e6005c', color: 'white', padding: '2px 8px', borderRadius: '4px', width: 'fit-content', fontWeight: 'bold', marginBottom: '4px' }}>NEW</div>
+                                            <h4 className="program-title" style={{ margin: 0, fontSize: '1rem', fontWeight: '700' }}>{course.title}</h4>
+                                            <p className="program-subtitle" style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}>{course.dur} • {course.price}</p>
                                         </div>
                                     </div>
                                 ))}
