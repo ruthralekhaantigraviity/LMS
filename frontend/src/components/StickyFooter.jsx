@@ -12,6 +12,11 @@ const StickyFooter = () => {
                         REQUEST CALLBACK <ArrowUpRight className="sticky-footer-icon" size={16} />
                     </a>
                 </span>
+                <span className="sticky-footer-text" style={{ marginLeft: '20px', paddingLeft: '20px', borderLeft: '1px solid rgba(255,255,255,0.2)' }}>
+                    <a href="/admin/login" className="sticky-footer-link">
+                        STAFF PORTAL (Admin/HR) <ArrowUpRight className="sticky-footer-icon" size={16} />
+                    </a>
+                </span>
             </div>
         </div>
     );
