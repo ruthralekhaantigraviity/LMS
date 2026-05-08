@@ -38,16 +38,16 @@ const HRDashboard = () => {
     const [selectedStudent, setSelectedStudent] = useState(null);
 
     useEffect(() => {
-        const storedLeads = JSON.parse(localStorage.getItem('scaler_leads') || '[]');
+        const storedLeads = JSON.parse(localStorage.getItem('fic_leads') || '[]');
         
         // Initial mock data if empty
         if (storedLeads.length === 0) {
             const initialMock = [
-                { id: 1, name: 'Alice Johnson', email: 'alice@gmail.com', phone: '+91 98989 89898', program: 'Full Stack Web Dev', source: 'Instagram', status: 'pending', date: '2h ago' },
-                { id: 2, name: 'Bob Smith', email: 'bob@yahoo.com', phone: '+91 87878 78787', program: 'Data Science', source: 'Website', status: 'pending', date: '5h ago' },
+                { id: 1, name: 'Alice Johnson', email: 'alice@gmail.com', phone: '+91 98989 89898', program: 'Full Stack Python', source: 'Instagram', status: 'pending', date: '2h ago' },
+                { id: 2, name: 'Bob Smith', email: 'bob@yahoo.com', phone: '+91 87878 78787', program: 'Full Stack MERN', source: 'Website', status: 'pending', date: '5h ago' },
             ];
             setLeads(initialMock);
-            localStorage.setItem('scaler_leads', JSON.stringify(initialMock));
+            localStorage.setItem('fic_leads', JSON.stringify(initialMock));
         } else {
             setLeads(storedLeads);
         }
@@ -59,7 +59,7 @@ const HRDashboard = () => {
     const handleAction = (id, newStatus) => {
         const updatedLeads = leads.map(l => l.id === id ? { ...l, status: newStatus } : l);
         setLeads(updatedLeads);
-        localStorage.setItem('scaler_leads', JSON.stringify(updatedLeads));
+        localStorage.setItem('fic_leads', JSON.stringify(updatedLeads));
         
         let message = 'Status updated';
         let type = 'info';

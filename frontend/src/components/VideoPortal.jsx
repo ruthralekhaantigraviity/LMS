@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Play, CheckCircle, X, ArrowDown } from 'lucide-react';
+import { Book, CheckCircle, X } from 'lucide-react';
 
 const VideoPortal = ({ topic, completedVideos, onComplete, onClose }) => {
     const [activeVideo, setActiveVideo] = useState(topic.videos[0]);
-    const [isVideoFinished, setIsVideoFinished] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
 
     useEffect(() => {
-        // Reset state when video changes
-        setIsVideoFinished(false);
+        // Reset state when lesson changes
         setShowSuccess(false);
     }, [activeVideo]);
 
@@ -60,77 +58,31 @@ const VideoPortal = ({ topic, completedVideos, onComplete, onClose }) => {
                                 ))}
                             </div>
 
-                            <div className="scroll-indicator">
-                                <span>Continue to Video</span>
-                                <ArrowDown size={14} className="bounce" />
-                            </div>
-                        </div>
-
-                        {/* 2. Video Section (At the last) */}
-                        <div className="video-section" id="lecture-video">
-                            <h3 className="material-title">Lecture Video</h3>
-                            <div className="video-player-container-new">
-                                {activeVideo.videoUrl ? (
-                                    <div className="youtube-wrapper">
-                                        <iframe
-                                            width="100%"
-                                            height="100%"
-                                            src={activeVideo.videoUrl}
-                                            title={activeVideo.title}
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            allowFullScreen
-                                        ></iframe>
-
-                                        {!isVideoFinished ? (
-                                            <button className="simulate-finish-btn" onClick={() => setIsVideoFinished(true)}>
-                                                FINISHED WATCHING?
-                                            </button>
-                                        ) : (
-                                            <div className="video-finished-overlay">
-                                                <CheckCircle size={48} color="#22c55e" />
-                                                <p>Video Completed!</p>
-                                                {!completedVideos.includes(activeVideo.id) && (
-                                                    <button
-                                                        className="btn-mark-complete-on-video"
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            handleMarkComplete();
-                                                        }}
-                                                    >
-                                                        MARK AS COMPLETED
-                                                    </button>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                ) : (
-                                    <div className="video-placeholder-new" onClick={() => setIsVideoFinished(true)}>
-                                        {!isVideoFinished ? (
-                                            <>
-                                                <Play size={48} color="#ff0080" />
-                                                <p>Click to start lesson video ({activeVideo.duration})</p>
-                                            </>
-                                        ) : (
-                                            <div className="video-finished-overlay">
-                                                <CheckCircle size={48} color="#22c55e" />
-                                                <p>Video Completed!</p>
-                                                {!completedVideos.includes(activeVideo.id) && (
-                                                    <button
-                                                        className="btn-mark-complete-on-video"
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            handleMarkComplete();
-                                                        }}
-                                                    >
-                                                        MARK AS COMPLETED
-                                                    </button>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
+                            {!completedVideos.includes(activeVideo.id) && (
+                                <button 
+                                    className="btn-mark-complete-on-material" 
+                                    onClick={handleMarkComplete}
+                                    style={{
+                                        marginTop: '2rem',
+                                        padding: '1rem 2rem',
+                                        background: '#ff0080',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        width: '100%',
+                                        transition: 'all 0.3s ease',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '0.5rem'
+                                    }}
+                                >
+                                    <CheckCircle size={20} />
+                                    MARK LESSON AS COMPLETED
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -139,24 +91,24 @@ const VideoPortal = ({ topic, completedVideos, onComplete, onClose }) => {
                     <div className="sidebar-header">
                         <h4 style={{ color: '#888', fontSize: '0.8rem', textTransform: 'uppercase' }}>Lessons in Topic</h4>
                     </div>
-                    <div className="video-list">
-                        {topic.videos.map((video) => (
+                    <div className="lesson-list">
+                        {topic.videos.map((lesson) => (
                             <div
-                                key={video.id}
-                                className={`video-item ${activeVideo.id === video.id ? 'active' : ''}`}
-                                onClick={() => setActiveVideo(video)}
+                                key={lesson.id}
+                                className={`lesson-item ${activeVideo.id === lesson.id ? 'active' : ''}`}
+                                onClick={() => setActiveVideo(lesson)}
                             >
-                                <div className="video-thumb-container">
-                                    <img src={video.thumbnail} alt={video.title} className="video-thumb" />
-                                    {completedVideos.includes(video.id) && (
+                                <div className="lesson-thumb-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a', borderRadius: '4px' }}>
+                                    <Book size={20} color="#ff0080" />
+                                    {completedVideos.includes(lesson.id) && (
                                         <div className="thumb-status">
                                             <CheckCircle size={16} color="#22c55e" />
                                         </div>
                                     )}
                                 </div>
-                                <div className="video-info">
-                                    <h5>{video.title}</h5>
-                                    <span>{video.duration}</span>
+                                <div className="lesson-info">
+                                    <h5>{lesson.title}</h5>
+                                    <span>{lesson.duration}</span>
                                 </div>
                             </div>
                         ))}

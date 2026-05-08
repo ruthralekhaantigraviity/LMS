@@ -22,7 +22,7 @@ const HeroRight = () => {
         }
 
         // Save lead to localStorage so dashboards can see it
-        const existingLeads = JSON.parse(localStorage.getItem('scaler_leads') || '[]');
+        const existingLeads = JSON.parse(localStorage.getItem('fic_leads') || '[]');
         const newLead = {
             id: Date.now(),
             ...formData,
@@ -30,7 +30,7 @@ const HeroRight = () => {
             date: new Date().toLocaleDateString()
         };
         
-        localStorage.setItem('scaler_leads', JSON.stringify([newLead, ...existingLeads]));
+        localStorage.setItem('fic_leads', JSON.stringify([newLead, ...existingLeads]));
         
         addToast('Class booked! Our advisor will contact you soon.', 'success');
         setFormData({ program: '', name: '', email: '', phone: '' });
@@ -54,9 +54,11 @@ const HeroRight = () => {
                             onChange={(e) => setFormData({...formData, program: e.target.value})}
                         >
                             <option value="" disabled>Select Program</option>
-                            <option value="Full Stack Development">Full Stack Development</option>
-                            <option value="Data Structures & Algo">Data Structures & Algo</option>
-                            <option value="System Design">System Design</option>
+                            <option value="Full Stack Python">Full Stack Python</option>
+                            <option value="Full Stack MERN">Full Stack MERN</option>
+                            <option value="Data Analytics">Data Analytics</option>
+                            <option value="Java Full Stack">Java Full Stack</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
                         </select>
                     </div>
 

@@ -45,17 +45,17 @@ const AdminDashboard = () => {
     ]);
 
     const [courseList, setCourseList] = useState([
-        { id: 1, title: 'Full Stack Web Dev', cat: 'Tech', dur: '6 Months', price: '₹49,999', status: 'Active' },
-        { id: 2, title: 'Data Science Specialization', cat: 'Tech', dur: '8 Months', price: '₹65,000', status: 'Active' },
-        { id: 3, title: 'UI/UX Design Masterclass', cat: 'Design', dur: '3 Months', price: '₹25,000', status: 'Draft' },
-        { id: 4, title: 'Cloud Computing (AWS)', cat: 'Tech', dur: '4 Months', price: '₹35,000', status: 'Active' },
+        { id: 1, title: 'Full Stack Python', cat: 'Tech', dur: '6 Months', price: '₹49,999', status: 'Active' },
+        { id: 2, title: 'Full Stack MERN', cat: 'Tech', dur: '6 Months', price: '₹55,000', status: 'Active' },
+        { id: 3, title: 'Data Analytics', cat: 'Tech', dur: '6 Months', price: '₹35,000', status: 'Active' },
+        { id: 4, title: 'UI/UX Design', cat: 'Design', dur: '6 Months', price: '₹25,000', status: 'Active' },
     ]);
 
     const [newCourse, setNewCourse] = useState({ title: '', cat: 'tech', price: '' });
     const [newStaff, setNewStaff] = useState({ name: '', email: '', role: 'HR Admissions', password: '' });
 
     useEffect(() => {
-        const storedLeads = JSON.parse(localStorage.getItem('scaler_leads') || '[]');
+        const storedLeads = JSON.parse(localStorage.getItem('fic_leads') || '[]');
         setLeads(storedLeads);
 
         // Load admin courses

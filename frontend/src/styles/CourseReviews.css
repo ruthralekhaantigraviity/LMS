@@ -5,11 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 .cr-section {
-    background: var(--bg-secondary);
+    background: transparent;
     font-family: 'Inter', sans-serif;
     overflow: hidden;
     padding: 3.5rem 1.5rem 0;
-    transition: background-color var(--transition-speed);
 }
 
 /* ---- Section Header ---- */
@@ -23,7 +22,7 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--text-primary);
     margin: 0 0 0.65rem;
 }
 
@@ -133,8 +132,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    background: var(--bg-primary);
-    transition: background-color var(--transition-speed);
+    background: transparent;
 }
 
 .cr-marquee {
@@ -175,7 +173,7 @@
 .cr-marquee-dim {
     font-size: 47px;
     font-weight: 600;
-    color: #3a3a55;
+    color: var(--text-dim);
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }

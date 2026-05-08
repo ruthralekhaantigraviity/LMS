@@ -22,13 +22,11 @@ const FormulaForGrowth = () => {
 
                 {/* Right Video */}
                 <div className="formula-video-container">
-                    <video
-                        src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/085/492/original/Upskill_now.mp4?1723202727"
+                    <img 
+                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop"
+                        alt="Growth"
                         className="formula-video"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
+                        style={{ objectFit: 'cover' }}
                     />
                 </div>
 

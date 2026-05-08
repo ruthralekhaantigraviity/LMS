@@ -45,101 +45,73 @@ const Courses = () => {
 
     const courses = [
         {
-            title: "Software Development Course with AI Specialisation",
+            title: "Full Stack Python",
             gradient: "banner-solid-blue",
             icon: <Code size={70} strokeWidth={2.5} />,
             badge: "NSDC CERTIFIED",
             meta: [
-                { label: "Min. work exp: 1 year", icon: <Briefcase size={14} /> },
-                { label: "Duration: 9-12 months", icon: <Clock size={14} /> },
-                { label: "1 Capstone project", icon: <Layers size={14} /> }
+                { label: "Duration: 6 Months", icon: <Clock size={14} /> },
+                { label: "10+ Real-time projects", icon: <Layers size={14} /> },
+                { label: "Learn from Industry Experts", icon: <Stars size={14} /> }
             ],
             type: "ONLINE PROGRAM",
             typeClass: "online-pill",
             isNew: false
         },
         {
-            title: "Online PGP in Business & AI",
+            title: "Full Stack MERN",
             gradient: "banner-orange",
-            icon: <UnifiedIcon />,
+            icon: <Code size={70} strokeWidth={2.5} />,
             badge: "MANAGEMENT & AI PROGRAM",
             meta: [
-                { label: "Min. work exp: 2 years", icon: <Briefcase size={14} /> },
-                { label: "Duration: 12 months", icon: <Clock size={14} /> },
-                { label: "Integrated with Applied AI learning", icon: <Brain size={14} /> }
+                { label: "Duration: 6 Months", icon: <Clock size={14} /> },
+                { label: "10+ Real-time projects", icon: <Layers size={14} /> },
+                { label: "Learn from Industry Experts", icon: <Stars size={14} /> }
             ],
             type: "ONLINE PROGRAM",
             typeClass: "online",
             isNew: true
         },
         {
-            title: "AI Engineering Advanced Certification by IIT-Roorkee, CEC",
+            title: "Data Analytics",
             gradient: "banner-magenta",
-            icon: <UnifiedIcon />,
+            icon: <Database size={70} strokeWidth={2.5} />,
             badge: "DESIGNED BY IIT-R, CEC X FIC",
             meta: [
-                { label: "Working as tech professionals", icon: <Briefcase size={14} /> },
-                { label: "Duration: 2 Months", icon: <Clock size={14} /> },
-                { label: "Hands on projects", icon: <Stars size={14} /> }
+                { label: "Duration: 6 Months", icon: <Clock size={14} /> },
+                { label: "10+ Real-time projects", icon: <Layers size={14} /> },
+                { label: "Learn from Industry Experts", icon: <Stars size={14} /> }
             ],
             type: "ONLINE PROGRAM",
             typeClass: "online",
             isNew: true
         },
         {
-            title: "Data Science Course with AI Specialisation",
+            title: "Java Full Stack",
             gradient: "banner-purple",
-            icon: <UnifiedIcon />,
+            icon: <Code size={70} strokeWidth={2.5} />,
             badge: "NSDC CERTIFIED",
             meta: [
-                { label: "Min. work exp: 1 year", icon: <Briefcase size={14} /> },
-                { label: "Duration: 7-18 months", icon: <Clock size={14} /> },
-                { label: "50+ real-world case studies", icon: <FileBadge size={14} /> }
+                { label: "Duration: 6 Months", icon: <Clock size={14} /> },
+                { label: "10+ Real-time projects", icon: <Layers size={14} /> },
+                { label: "Learn from Industry Experts", icon: <Stars size={14} /> }
             ],
             type: "ONLINE PROGRAM",
             typeClass: "online",
             isNew: false
         },
         {
-            title: "Bachelor's + Master's Program",
+            title: "UI/UX",
             gradient: "banner-blue-light",
-            icon: <UnifiedIcon />,
+            icon: <Layout size={70} strokeWidth={2.5} />,
             badge: "RECOMMENDED DEGREE FROM BITS",
             meta: [
-                { label: "Completed 12th grade", icon: <GraduationCap size={14} /> },
-                { label: "3 years + 1-year internship", icon: <Clock size={14} /> },
-                { label: "Fully residential in Bangalore", icon: <Briefcase size={14} /> }
+                { label: "Duration: 6 Months", icon: <Clock size={14} /> },
+                { label: "10+ Real-time projects", icon: <Layers size={14} /> },
+                { label: "Learn from Industry Experts", icon: <Stars size={14} /> }
             ],
             type: "ON CAMPUS PROGRAM",
             typeClass: "campus",
-            isNew: false
-        },
-        {
-            title: "Business Program",
-            gradient: "banner-green",
-            icon: <UnifiedIcon />,
-            badge: "DESIGNED BY BUSINESS LEADERS",
-            meta: [
-                { label: "Min. work exp: 1 years", icon: <Briefcase size={14} /> },
-                { label: "Duration: 15 months + 3-month internship", icon: <Clock size={14} /> },
-                { label: "Build your MVP", icon: <Stars size={14} /> }
-            ],
-            type: "ON-CAMPUS PROGRAM",
-            typeClass: "campus",
-            isNew: true
-        },
-        {
-            title: "Master's in Software Development Course",
-            gradient: "banner-yellow",
-            icon: <UnifiedIcon />,
-            badge: "DEGREE FROM WOOLF",
-            meta: [
-                { label: "Min. work exp: 1 year", icon: <Briefcase size={14} /> },
-                { label: "Duration: 18 months", icon: <Clock size={14} /> },
-                { label: "90 Transferable ECTS credits", icon: <FileBadge size={14} /> }
-            ],
-            type: "ONLINE PROGRAM",
-            typeClass: "online",
             isNew: false
         }
     ];
@@ -227,12 +199,7 @@ const Courses = () => {
 
                                 {/* Body */}
                                 <div className="card-body-v2">
-                                    <div className="badge-row">
-                                        <div className="meta-badge-v2">
-                                            <Layout size={10} />
-                                            <span>{course.badge}</span>
-                                        </div>
-                                    </div>
+
 
                                     <h3 className="course-title-v2">{course.title}</h3>
 
@@ -290,9 +257,7 @@ const Courses = () => {
                             </div>
                         </div>
                         <h2 style={{ fontSize: '1.5rem', marginBottom: '10px', color: '#1a202c' }}>{selectedCourse.title}</h2>
-                        <div style={{ display: 'inline-block', background: 'rgba(230, 0, 92, 0.1)', color: '#e6005c', padding: '4px 12px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600, marginBottom: '20px' }}>
-                            {selectedCourse.badge}
-                        </div>
+
                         
                         <div className="course-fees-section" style={{ background: '#f7fafc', padding: '20px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
                             <h3 style={{ fontSize: '1.2rem', marginBottom: '15px', color: '#2d3748', display: 'flex', alignItems: 'center', gap: '8px' }}>

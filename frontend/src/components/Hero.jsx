@@ -19,9 +19,10 @@ const Hero = () => {
                 {/* Two Column Layout */}
                 <div className="hero-grid">
 
-                    {/* Left Column - Cinematic Banner & Stats */}
+                    {/* Left Column - Stats & Info (Image Removed) */}
                     <div className="left-col">
-                        <HeroLeft />
+                        {/* Only keeping stats if they are in HeroLeft, or we can just remove this col */}
+                        <HeroLeft /> 
                     </div>
 
                     {/* Right Column - Form */}

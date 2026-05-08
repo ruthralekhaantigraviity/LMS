@@ -4,9 +4,13 @@ import '../styles/FeaturedNews.css';
 
 const marqueeText = Array(10).fill(null).map((_, i) => (
     <React.Fragment key={i}>
-        <span className="fn-m-dim">IN THE NEWS</span>
+        <span className="fn-m-dim">FULL STACK</span>
         <span className="fn-m-dot"> • </span>
-        <span className="fn-m-bright">FEATURED</span>
+        <span className="fn-m-bright">DATA ANALYTICS</span>
+        <span className="fn-m-dot"> • </span>
+        <span className="fn-m-dim">JAVA</span>
+        <span className="fn-m-dot"> • </span>
+        <span className="fn-m-bright">PYTHON</span>
         <span className="fn-m-dot"> • </span>
     </React.Fragment>
 ));

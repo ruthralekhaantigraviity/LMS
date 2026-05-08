@@ -21,6 +21,11 @@
   --success-green: #4ade80;
   --error-red: #e53e3e;
   --testimonial-bg: linear-gradient(to bottom, #000000, #020617);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
 
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
@@ -37,25 +42,28 @@
 }
 
 /* Light Theme Overrides */
-body.light-theme {
+:root[data-theme='light'] {
   --bg-primary: #ffffff;
-  --bg-secondary: #f3f4f6;
+  --bg-secondary: #f8fafc;
   --bg-card: #ffffff;
-  --text-primary: #111827;
-  --text-secondary: #374151;
-  --text-dim: #6b7280;
-  --border-color: rgba(0, 0, 0, 0.1);
-  --navbar-bg: #ffffff;
-  --input-bg: #f9fafb;
-  --banner-bg: linear-gradient(90deg, #e0f2fe 0%, #bae6fd 35%, #7dd3fc 65%, #38bdf8 100%);
-  --featured-color: #0891b2;
-  --success-green: #16a34a;
-  --error-red: #dc2626;
-  --testimonial-bg: linear-gradient(to bottom, #ffffff, #f1f5f9);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-dim: #64748b;
+  --border-color: #e2e8f0;
+  --navbar-bg: rgba(255, 255, 255, 0.9);
+  --input-bg: #ffffff;
+  --banner-bg: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 35%, #bae6fd 65%, #7dd3fc 100%);
+  --featured-color: #0369a1;
+  --success-green: #15803d;
+  --error-red: #b91c1c;
+  --testimonial-bg: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(0, 0, 0, 0.02);
+  --glass-border: rgba(0, 0, 0, 0.08);
 
   color-scheme: light;
-  color: var(--text-secondary);
-  background-color: var(--bg-primary);
 }
 
 body {
@@ -69,6 +77,27 @@ body {
   color: var(--text-secondary);
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
+
+/* =====================================================
+   GLOBAL THEME — All sections inherit from body.
+   This removes the "separate box" appearance.
+   ===================================================== */
+section,
+.hero-container,
+.alumni-section,
+.why-fic-section,
+.courses-section,
+.ai-section,
+.testimonials-section,
+.success-section,
+.formula-section,
+.cr-section,
+.fn-section,
+.cr-marquee-wrap,
+.fn-marquee-wrap {
+  background-color: transparent !important;
+}
+
 
 h1,
 h2,

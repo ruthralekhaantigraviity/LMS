@@ -39,8 +39,11 @@ const StarRating = ({ rating, color = '#f59e0b' }) => {
 
 const marqueeItems = Array(12).fill(null).map((_, i) => (
     <React.Fragment key={i}>
-        <span className="cr-marquee-dim">IN THE NEWS •&nbsp;</span>
-        <span className="cr-marquee-bright">FEATURED •&nbsp;</span>
+        <span className="cr-marquee-dim">FULL STACK •&nbsp;</span>
+        <span className="cr-marquee-bright">DATA ANALYTICS •&nbsp;</span>
+        <span className="cr-marquee-dim">UI/UX •&nbsp;</span>
+        <span className="cr-marquee-bright">JAVA •&nbsp;</span>
+        <span className="cr-marquee-dim">PYTHON •&nbsp;</span>
     </React.Fragment>
 ));
 

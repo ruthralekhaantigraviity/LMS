@@ -140,16 +140,16 @@
 .fn-arrow-btn-hover {
     width: 70px;
     height: 70px;
-    background: #2a2a2a;
-    border: none;
-    color: white;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     border-radius: 0;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .fn-arrow-btn-hover:hover {
@@ -192,7 +192,9 @@
 }
 
 .fn-card:hover {
-    filter: brightness(1.08);
+    border-color: var(--text-dim);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
 }
 
 /* ---- Card top (gradient bg + logo) ---- */

@@ -28,7 +28,7 @@
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: white;
+    color: var(--text-primary);
     margin-bottom: 0.75rem;
 }
 
@@ -46,8 +46,8 @@
 
 .toggle-btn {
     background: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
     padding: 0.9rem 1.8rem;
     border-radius: 2px;
     font-weight: 500;
@@ -57,9 +57,9 @@
 }
 
 .toggle-btn.active {
-    background: transparent;
-    color: white;
-    border-color: white;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
 }
 
 /* Slider Viewport */
@@ -105,9 +105,9 @@
 .arrow-btn-hover {
     width: 70px;
     height: 70px;
-    background: #2a2a2a;
-    border: none;
-    color: white;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,7 +115,7 @@
     border-radius: 0;
     /* Square design */
     transition: all 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .arrow-btn-hover:hover {
@@ -168,11 +168,14 @@
     flex-direction: column;
     scroll-snap-align: start;
     /* Align to edge */
-    transition: border-color 0.3s;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
 }
 
 .course-card-full:hover {
-    border-color: #333;
+    border-color: var(--text-dim);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
 }
 
 /* Card Banners Large */
@@ -228,13 +231,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: #1a1a1a;
-    padding: 0.6rem 1rem;
-    border-radius: 2px;
-    font-size: 0.75rem;
-    font-weight: 400;
-    /* Removed bold/weighted */
-    color: #a1a1aa;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
     /* Changed to grey */
     border: none;
     text-transform: uppercase;
@@ -269,7 +267,7 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    color: #a1a1aa;
+    color: var(--text-secondary);
     font-size: 14px;
     /* Updated to 14px as requested */
     font-weight: 400;
@@ -371,7 +369,7 @@
 
 .btn-go-v2 {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
     color: var(--text-primary);
     padding: 0.9rem;
     font-weight: 500;

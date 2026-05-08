@@ -1,25 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useTheme } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import LearnerOutcomes from './components/LearnerOutcomes';
+
 import LogoCarousel from './components/LogoCarousel';
 import Courses from './components/Courses';
-import TrendingCourses from './components/TrendingCourses';
+
 import AIInterviews from './components/AIInterviews';
 import Testimonials from './components/Testimonials';
 import SuccessStories from './components/SuccessStories';
-import FormulaForGrowth from './components/FormulaForGrowth';
-import Leaders from './components/Leaders';
+import WhyChooseFIC from './components/WhyChooseFIC';
+
 import CourseReviews from './components/CourseReviews';
 import FeaturedNews from './components/FeaturedNews';
-import ScalerBanner from './components/ScalerBanner';
-import AdvisorSection from './components/AdvisorSection';
-import MasterclassEvents from './components/MasterclassEvents';
+
+
 import StickyFooter from './components/StickyFooter';
 import FloatingPhone from './components/FloatingPhone';
 import LoginPage from './pages/LoginPage';
@@ -45,24 +45,25 @@ import './App.css';
 const LandingPage = () => (
   <>
     <Hero />
-    <LearnerOutcomes />
+
     <LogoCarousel />
+    <WhyChooseFIC />
     <Courses />
     <AIInterviews />
     <Testimonials />
     <SuccessStories />
-    <FormulaForGrowth />
-    <Leaders />
-    <MasterclassEvents />
+
+
     <CourseReviews />
     <FeaturedNews />
-    <ScalerBanner />
-    <AdvisorSection />
-    <TrendingCourses />
+
+
+
   </>
 );
 
 const AppContent = () => {
+  const { theme } = useTheme();
   const location = useLocation();
   const hideNavbarRoutes = [
     '/login', 
@@ -78,7 +79,7 @@ const AppContent = () => {
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   return (
-    <div className="app-container">
+    <div className={`app-container ${theme === 'light' ? 'light-theme' : ''}`}>
       {!shouldHideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />

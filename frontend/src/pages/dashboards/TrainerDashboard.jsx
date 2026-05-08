@@ -44,9 +44,9 @@ const TrainerDashboard = () => {
     ]);
 
     const [trainerCourses, setTrainerCourses] = useState([
-        { id: 1, title: 'Advanced React Architecture', students: 45, progress: 65, time: 'Next Class: 4 PM', status: 'Upcoming' },
-        { id: 2, title: 'Node.js Backend Mastery', students: 38, progress: 40, time: 'Next Class: Tomorrow', status: 'Upcoming' },
-        { id: 3, title: 'Cloud Native Apps with AWS', students: 22, progress: 15, time: 'Next Class: Fri 10 AM', status: 'Draft' },
+        { id: 1, title: 'Full Stack Python Masterclass', students: 45, progress: 65, time: 'Next Class: 4 PM', status: 'Upcoming' },
+        { id: 2, title: 'Full Stack MERN Architecture', students: 38, progress: 40, time: 'Next Class: Tomorrow', status: 'Upcoming' },
+        { id: 3, title: 'Data Analytics & Visualization', students: 22, progress: 15, time: 'Next Class: Fri 10 AM', status: 'Draft' },
     ]);
 
     const handleLaunchClass = (id) => {

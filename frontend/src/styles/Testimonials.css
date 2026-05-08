@@ -126,13 +126,11 @@
 }
 
 .arrow-btn-hover {
-    width: 44px;
-    height: 44px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--bg-card);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
-    color: white;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,6 +138,7 @@
     opacity: 0;
     /* Invisible by default */
     transition: opacity 0.3s, transform 0.2s, background 0.2s;
+    box-shadow: var(--shadow-md);
 }
 
 .slider-viewport:hover .arrow-btn-hover {
@@ -239,14 +238,14 @@
 
 .speaker-role {
     font-size: 16px;
-    color: #ffffff;
+    color: var(--text-secondary);
     line-height: 1.4;
 }
 
 .speaker-company {
     display: block;
     font-size: 16px;
-    color: #888;
+    color: var(--text-dim);
     /* Grey color */
     margin-top: 0.2rem;
 }
