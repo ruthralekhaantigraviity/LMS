@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { X, ChevronDown } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../utils/api';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
@@ -63,7 +64,7 @@ const LoginPage = () => {
             }
         } else {
             try {
-                const response = await fetch('/api/auth/login', {
+                const response = await fetch(apiUrl('/api/auth/login'), {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
